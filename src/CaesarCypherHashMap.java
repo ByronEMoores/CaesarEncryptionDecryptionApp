@@ -1,5 +1,11 @@
 import java.util.HashMap;
 
+/**
+ * Class for creating a hash map for encrypting or decrypting
+ * 
+ * @author Byron Edward Moores
+ * @version 1.0, 15 Sep 2026
+ */
 public class CaesarCypherHashMap {
     private static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

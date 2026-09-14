@@ -1,19 +1,28 @@
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
+
+/**
+ * Application that lets you encrypt and decrypt 
+ * messages using a caesar cypher with a custom shift
+ * 
+ * @author Byron Edward Moores
+ * @version 1.0, 15 Sep 2026
+ */
 public class App {
     public static void main(String[] args) throws Exception {
         String[] choices = {"Encrypt", "Decrypt"};
-        String input = " ";
+        String input = "";
 
         while (input != null){
-            input = (String) JOptionPane.showInputDialog(
-                null,                           // Parent component (null means centered on screen)
-                "What would you like to do?", // The message inside the window
-                "Caesar Cypher",              // The title of the window
-                JOptionPane.QUESTION_MESSAGE,   // The type of message (shows a question icon)
-                null,                           // Icon (null uses the default icon)
-                choices,                        // The array of selection options
-                choices[0]                      // The default choice selected at startup
+            input = (String) JOptionPane.showInputDialog( // Create an input dialogue with choices as the dropdown options
+                null,
+                "What would you like to do?",
+                "Caesar Cypher",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choices,
+                choices[0]
             );
 
             if (input == "Encrypt"){
@@ -30,7 +39,7 @@ public class App {
         CaesarCypherHashMap caesarCypher = new CaesarCypherHashMap(caesarShift);
         String message = JOptionPane.showInputDialog("Enter the message you wish to encrypt");
         String encryptedMessage = caesarCypher.encrypt(message);
-        JOptionPane.showMessageDialog(null, "Your encrypted message is " + encryptedMessage);
+        JOptionPane.showMessageDialog(null, CopyableText(encryptedMessage), "Your encrypted message is", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void DecryptMessage(){
@@ -38,6 +47,17 @@ public class App {
         CaesarCypherHashMap caesarCypher = new CaesarCypherHashMap(caesarShift);
         String message = JOptionPane.showInputDialog("Enter the message you wish to decrypt");
         String decryptedMessage = caesarCypher.decrypt(message);
-        JOptionPane.showMessageDialog(null, "Your decrypted message is " + decryptedMessage);
+        JOptionPane.showMessageDialog(null, CopyableText(decryptedMessage), "Your decrypted message is", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static JTextField CopyableText(String message){
+        JTextField textField = new JTextField(message); // Create a text field with message
+        
+        textField.setEditable(false); // Set textbox uneditable
+        
+        textField.setBorder(null); // Make it blend in by removing the border and background box
+        textField.setBackground(null);
+
+        return textField;
     }
 }
